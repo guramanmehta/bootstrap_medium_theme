@@ -1,0 +1,69 @@
+body {
+
+}
+
+
+#sidebar {
+	position: fixed;
+	left: @sideMargin;
+	width: @sidebarWidth;
+	z-index: 800;
+	height: 100%;
+	background: @sidebarBackground;
+	color: @sidebarTextColor;
+	.container {
+		width: auto;
+		margin: @bodyPaddingTop 0 0;
+	}
+	.profile {
+		font-family: @sansFontFamily;
+		a {
+			color: @sidebarTextColor;
+		}
+		p {
+			font-size: 0.750em;
+		}
+		h2 {
+			font-size: 1em;
+			margin-bottom: 10px;
+			padding-bottom: 0px;
+		}
+		.profile-thumb {
+			width: @profileThumbWidth;
+			height: @profileThumbWidth;
+			overflow: hidden;
+			.border-radius(@profileThumbWidth);
+			img {
+				
+			}
+		}
+		.author {
+
+		}
+	}
+}
+
+#main-container {
+	position: relative;
+	padding: @bodyPaddingTop @highlightOffset 0;
+	margin-left: @sideMargin + @sidebarOffset + @sidebarWidth;
+	margin-right: @sideMargin;
+	z-index: 400;
+
+
+	.main-view {
+		-webkit-transition: all 0.1s ease-in;
+		&.min {
+			margin-right: 400px;
+		}
+	}
+}
+
+.highlight {
+	margin-left: -@highlightOffset;
+	margin-right: -@highlightOffset;
+	padding: (@componentVerticalGutter / 2) 0;
+	font-style: italic;
+	text-align: justify;
+	font-size: @baseFontSize * 1.25;
+}
