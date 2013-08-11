@@ -11,6 +11,8 @@ body {
 	height: 100%;
 	background: @sidebarBackground;
 	color: @sidebarTextColor;
+	text-align: right;
+
 	.container {
 		width: auto;
 		margin: @bodyPaddingTop 0 0;
@@ -19,22 +21,27 @@ body {
 		font-family: @sansFontFamily;
 		a {
 			color: @sidebarTextColor;
+			&:hover {
+				color: @linkColorHover;
+			}
 		}
 		p {
-			font-size: 0.750em;
+			font-size: 0.688em;
+			line-height: 1.4em;
 		}
 		h2 {
-			font-size: 1em;
-			margin-bottom: 10px;
+			font-size: .825em;
+			line-height: @baseLineHeight;
+			margin-top: 10px;
+			margin-bottom: 0px;
 			padding-bottom: 0px;
+			padding-top: 0px;
 		}
 		.profile-thumb {
-			width: @profileThumbWidth;
-			height: @profileThumbWidth;
-			overflow: hidden;
-			.border-radius(@profileThumbWidth);
 			img {
-				
+				height: auto;
+				width: @profileThumbWidth;
+				.border-radius(@profileThumbWidth);
 			}
 		}
 		.author {
