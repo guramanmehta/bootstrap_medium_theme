@@ -9,14 +9,14 @@
 
 // Grays
 // -------------------------
-@black:                 #1a2b32;
-@grayDarkest:           darken(@grayDarker,5%);
-@grayDarker:            #2f454e;
-@grayDark:              #4e6873;
-@gray:                  #90a4ad;
-@grayLight:             #c9d2d6;
-@grayLighter:           #e6ebed;
-@grayLightest:          #f7f9fa;
+@black:                 #222222;
+@grayDarkest:           #333333;
+@grayDarker:            #444444;
+@grayDark:              #555555;
+@gray:                  #777777;
+@grayLight:             #aaaaaa;
+@grayLighter:           #dddddd;
+@grayLightest:          #eeeeee;
 @white:                 #fff;
 
 
@@ -39,7 +39,7 @@
 // Scaffolding
 // -------------------------
 @bodyBackground:        @white;
-@textColor:             @black;
+@textColor:             @grayDarkest;
 
 
 // Links
@@ -62,7 +62,7 @@
 
 @headingsFontFamily:    @sansFontFamily; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    800;    // instead of browser default, bold
-@headingsColor:         @black; // empty to use BS default, @textColor
+@headingsColor:         @textColor; // empty to use BS default, @textColor
 
 
 // Component sizing
@@ -327,5 +327,6 @@
 @sidebarOffset:						80px;
 @profileThumbWidth:					80px;
 @mainContainerHorizontalPadding: 	120px;
+@mainContainerMaxWidth:				786px - (@highlightOffset * 2);
 @bodyPaddingTop: 					80px;
 @componentVerticalGutter: 			60px;

@@ -49,14 +49,7 @@ body {
 	margin-left: @sideMargin + @sidebarOffset + @sidebarWidth;
 	margin-right: @sideMargin;
 	z-index: 400;
-
-
-	.main-view {
-		-webkit-transition: all 0.1s ease-in;
-		&.min {
-			margin-right: 400px;
-		}
-	}
+	max-width: @mainContainerMaxWidth;
 }
 
 .highlight {
