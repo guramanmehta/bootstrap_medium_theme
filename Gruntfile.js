@@ -43,6 +43,11 @@ module.exports = function (grunt) {
 					{ dest: '<%= distdir %>/font', src: '**', expand: true, cwd: 'vendor/pt-serif' },
 					{ dest: '<%= distdir %>/font', src: '**', expand: true, cwd: 'vendor/opensans' }
 				]
+			},
+			js: {
+				files: [
+					{ dest: '<%= distdir %>/js', src: '**', expand: true, cwd: 'vendor/jquery'}
+				]
 			}
 		},
 		jade: {
@@ -99,17 +104,19 @@ module.exports = function (grunt) {
 			}
 		},
 		watch:{
-			all: {
-				files:['src/**/*'],
-				tasks:['build', 'timestamp']
+			jade: {
+				files:['src/**/*.jade'],
+				tasks:['jade'],
+				options: {
+					livereload: true
+				}
 			},
-			build: {
-				files:['<%= src.js %>', '<%= src.lessWatch %>', '<%= src.jade %>', '<%= src.index %>'],
-				tasks:['jshint', 'build','timestamp']
-			},
-			dev: {
-				files:['<%= src.js %>', '<%= src.lessWatch %>', '<%= src.jade %>', '<%= src.index %>'],
-				tasks:['dev','timestamp']
+			less: {
+				files:['src/less/*.less'],
+				tasks:['recess'],
+				options: {
+					livereload: true
+				}
 			}
 		}
 	});

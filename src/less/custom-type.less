@@ -17,7 +17,7 @@ p {
   margin-bottom: @baseLineHeight;
   font-size: @baseFontSize * 1.5;
   font-weight: 400;
-  line-height: @baseLineHeight * 1.5;
+  line-height: @baseLineHeight * 1.2;
 }
 
 
@@ -108,7 +108,7 @@ h4 small { font-size: @baseFontSize; }
 // Unordered and Ordered lists
 ul, ol {
   padding: 0;
-  margin: 0 0 (@baseLineHeight) 80px;
+  margin: 0 0 @baseLineHeight 80px;
 }
 ul ul,
 ul ol,
@@ -117,7 +117,9 @@ ol ul {
   margin-bottom: 0;
 }
 li {
-  line-height: @baseLineHeight;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 10px;
 }
 
 // Remove default list styles

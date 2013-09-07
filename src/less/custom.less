@@ -1,7 +1,17 @@
 body {
-
+border-top: 5px solid @red;
 }
 
+@-webkit-keyframes sidebar-init {
+	0% {
+		top: -10px;
+		opacity: 0;
+	}
+	100% {
+		top: 0px;
+		opacity: 1;
+	}
+}
 
 #sidebar {
 	position: fixed;
@@ -12,10 +22,18 @@ body {
 	background: @sidebarBackground;
 	color: @sidebarTextColor;
 	text-align: right;
+	top: -10px;
+	opacity: 0;
+
+	&.visible {
+		-webkit-animation: sidebar-init 1s ease-in-out 1;
+		opacity: 1;
+		top: 0px;
+	}
 
 	.container {
 		width: auto;
-		margin: @bodyPaddingTop 0 0;
+		padding: @bodyPaddingTop 0 @mainContainerBottomPadding;
 	}
 	.profile {
 		font-family: @sansFontFamily;
@@ -38,7 +56,9 @@ body {
 			padding-top: 0px;
 		}
 		.profile-thumb {
+			height: @profileThumbWidth;
 			img {
+				-webkit-filter: grayscale(100%);
 				height: auto;
 				width: @profileThumbWidth;
 				.border-radius(@profileThumbWidth);
@@ -73,6 +93,14 @@ body {
 	max-width: @mainContainerMaxWidth;
 }
 
+article {
+	padding-bottom: @mainContainerBottomPadding;
+
+	img {
+		-webkit-filter: grayscale(100%);
+	}
+}
+
 .highlight {
 	margin-left: -@highlightOffset;
 	margin-right: -@highlightOffset;
@@ -80,4 +108,106 @@ body {
 	font-style: italic;
 	text-align: justify;
 	font-size: @baseFontSize * 1.25;
+}
+.controls {
+	padding-top: 20px;
+	.share, .navigate {
+		min-width: 150px;
+		> hr {
+			border-top: 1px dashed @grayLight;
+			margin-right: 75%;
+			margin-bottom: 15px;
+			margin-top: 10px;
+			padding: 0px;
+		}
+		> a {
+			display: inline-block;
+			text-decoration: none;
+
+			> i {
+				font-size: 25px;
+				color: @grayLight;
+				.transition(0.2s color ease-in-out);
+			}
+
+			&:hover {
+				> i {
+					color: @gray;
+				}
+			}
+		}
+		&.pull-right, &.pull-left {
+			> hr {
+				margin-right: 0px;
+			}
+		}
+		&.pull-left {
+			> a {
+				margin-right: 10px;
+			}
+		}
+		&.pull-right {
+			> a {
+				margin-right: 0px;
+				margin-left: 10px;
+			}
+		}
+	}
+	.navigate {
+		padding-top: 27px;
+	}
+}
+
+
+
+footer#footer {
+	padding: 15px @sideMargin 60px (@sideMargin + @sidebarOffset + @sidebarWidth);
+	background: @grayLightest;
+	border-top: 1px solid @grayLighter;
+	border-bottom: 5px solid @red;
+	.box-shadow(inset #fff 0px 1px 4px);
+
+	> .content {
+		padding: 0 @highlightOffset;
+		max-width: @mainContainerMaxWidth;
+
+		h4 {
+			font-size: 16px;
+			line-height: 18px;
+			padding: 0px @highlightOffset;
+			margin: 0 0 15px;
+		}
+	}
+
+	ul.related {
+		font-family: @altFontFamily;
+		margin-bottom: 35px;
+		> li {
+			margin-bottom: 10px;
+		}
+		&.icons-ul {
+			> li {
+				> .icon-li {
+					font-size: 14px;
+					color: @grayLight;
+					left: -35px;
+					top: 1px;
+				}
+			}
+		}
+	}
+
+	.copy {
+		font-family: @altFontFamily;
+		hr {
+			margin-bottom: 5px;
+			border-top: 1px solid @grayLighter;
+		}
+		small {
+			font-size: 12px;
+			color: @gray;
+		}
+	}
+	
+
 }

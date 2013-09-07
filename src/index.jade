@@ -4,6 +4,56 @@ html
 		meta(charset='utf8')
 		title #{project}
 		link(rel='stylesheet', href='css/#{appName}.css')
+		script(src="js/jquery.js")
+		script
+			var sidebar = null;
+			var sidebarContainer = null;
+			var w = null;
+			var container = null;
+			var scrollTop = 0;
+
+			function scrollHandler(event){
+				scrollTop = w.scrollTop();
+				checkCollision(sidebarContainer,container);
+			}
+
+			function checkCollision(elem,against){
+				console.log("checkin");
+				if ( elem.outerHeight() >= (against.outerHeight() - scrollTop ) ) {
+					//elem collided
+					processElem(sidebar,elem,against);
+				} else {
+					//console.log("no collision detected");
+					revertElemProcess(sidebar);
+				}
+			}
+
+			function processElem(processTarget,elem,against) {
+				processTarget.css({
+					position: 'absolute',
+					top: against.outerHeight() - elem.outerHeight()
+				});
+			}
+
+			function revertElemProcess(processTarget) {
+				processTarget.css({
+					position: 'fixed',
+					top: 0
+				});
+			}
+
+			function showSidebar(){
+				sidebar.addClass('visible');
+			}
+
+			$(function(){
+				sidebar = $('#sidebar');
+				sidebarContainer = sidebar.find('.container').eq(0);
+				container = $('#main-container');
+				w = $(window);
+				w.bind('scroll',scrollHandler);
+				setTimeout(showSidebar,1000);
+			});
 
 	body
 		#sidebar
@@ -12,7 +62,7 @@ html
 					.profile-thumb
 						img(src="http://lorempixel.com/200/200/people")
 					.author
-						h2 Author name
+						h2 #{author}
 						p Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
 						p 
 							a(href="https://twitter.com/") @AuthorName
@@ -21,39 +71,82 @@ html
 		#main-container
 			.row-fluid
 				.span12
-					.featured-img
-						img(src="http://lorempixel.com/768/520/city")
-					h1 Meet pork pastarami
-					p.lead Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
-					p 
-						strong Filet mignon chuck doner, 
-						i venison 
-						| ham swine tenderloin meatball pork loin ground round pork. Beef tri-tip ball tip chicken hamburger. Spare ribs pork loin boudin leberkas ground round short loin pastrami, doner andouille fatback sirloin. Chuck hamburger sausage ground round, jowl biltong salami. Flank ball tip shoulder short loin sausage. Fatback bresaola beef, beef ribs pastrami tail andouille pig.
+					article
+						.featured-img
+							img(src="http://lorempixel.com/768/520/city")
+						h1 Meet pork pastarami
+						p.lead Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
+						p 
+							strong Filet mignon chuck doner, 
+							i venison 
+							| ham swine tenderloin meatball pork loin ground round pork. Beef tri-tip ball tip chicken hamburger. Spare ribs pork loin boudin leberkas ground round short loin pastrami, doner andouille fatback sirloin. Chuck hamburger sausage ground round, jowl biltong salami. Flank ball tip shoulder short loin sausage. Fatback bresaola beef, beef ribs pastrami tail andouille pig.
 
-					p.highlight Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
+						p.highlight Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
 
-					p Strip steak frankfurter sirloin, salami turkey ball tip jerky meatloaf filet mignon ham hock doner. Ribeye filet mignon tongue pork loin chuck turkey spare ribs corned beef kielbasa frankfurter. Short ribs meatball ribeye ham hock pork belly shankle boudin pork loin filet mignon cow pig fatback.
+						p Strip steak frankfurter sirloin, salami turkey ball tip jerky meatloaf filet mignon ham hock doner. Ribeye filet mignon tongue pork loin chuck turkey spare ribs corned beef kielbasa frankfurter. Short ribs meatball ribeye ham hock pork belly shankle boudin pork loin filet mignon cow pig fatback.
 
-					ul 
-						li Lorem
-						li ipsum
-						li dolor
-					ol
-						li Lorem
-						li Ipsum
-						li Dolor
+						p 
+							a(href="#") And a link here
 
-					p 
-						a(href="#") And a link here
+						h2 Some lists n shit
 
-					h2 Blockquotes and highlights
+						ul 
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
+						ol
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
+							li Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon
 
-					blockquote Short ribs meatball ribeye ham hock pork belly shankle boudin pork loin filet mignon cow pig fatback.
+						
 
-					p.highlight Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
+						h2 Blockquotes and highlights
 
-					hr 
+						blockquote Short ribs meatball ribeye ham hock pork belly shankle boudin pork loin filet mignon cow pig fatback.
 
-					h3 Related posts
+						p.highlight Bacon ipsum dolor sit amet capicola ham corned beef jerky, spare ribs ham hock bacon pork chop strip steak filet mignon frankfurter salami.
+
+						p Strip steak frankfurter sirloin, salami turkey ball tip jerky meatloaf filet mignon ham hock doner. Ribeye filet mignon tongue pork loin chuck turkey spare ribs corned beef kielbasa frankfurter. Short ribs meatball ribeye ham hock pork belly shankle boudin pork loin filet mignon cow pig fatback.
+
+						.controls.clearfix
+							.share.pull-left
+								hr
+								a(href="#")
+									i.icon-twitter
+								a(href="#") 
+									i.icon-facebook
+							.navigate.pull-right
+								a(href="#")
+									i.icon-chevron-left
+								a(href="#")
+									i.icon-chevron-right
+
+		footer#footer
+			.content
+				.row-fluid
+					.span12
+						h3 Related
+
+						ul.icons-ul.related
+							li
+								i.icon-li.icon-chevron-sign-right
+								a(href="#") Article title
+							li
+								i.icon-li.icon-chevron-sign-right
+								a(href="#") Bacon ipsum dolor sit amet capicola
+							li
+								i.icon-li.icon-chevron-sign-right
+								a(href="#") Meat pork pastarami
+							li
+								i.icon-li.icon-chevron-sign-right
+								a(href="#") Bacon pork pastarami ipsum dolor sit amet capicola
+							li
+								i.icon-li.icon-chevron-sign-right
+								a(href="#") Article title
+
+						.copy
+							hr 
+							small &copy; 2013 #{author}
 
 
